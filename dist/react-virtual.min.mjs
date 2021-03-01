@@ -417,7 +417,7 @@ function calculateRange(_ref6, prevRange) {
   start = Math.max(start - overscan, 0);
   end = Math.min(end + overscan, total - 1);
 
-  if (!prevRange || prevRange.start !== start || prevRange.end !== end) {
+  if (!prevRange || Math.abs(start - prevRange.start) > overscan - 1 || Math.abs(end - prevRange.end) > overscan - 1) {
     return {
       start: start,
       end: end

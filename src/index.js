@@ -238,8 +238,14 @@ function calculateRange({
   start = Math.max(start - overscan, 0)
   end = Math.min(end + overscan, total - 1)
 
-  if (!prevRange || prevRange.start !== start || prevRange.end !== end) {
-    return { start, end }
+  if (!prevRange ||
+    Math.abs(start - prevRange.start) > overscan - 1 ||
+    Math.abs(end - prevRange.end) > overscan - 1
+  ) {
+    return {
+      start: start,
+      end: end
+    };
   }
 
   return prevRange
